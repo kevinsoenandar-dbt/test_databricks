@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: bike_shop
-    database: ksoenandar_raw
+    database: ksoenandar_bronze
     schema: bike_shop
     description: Mock data for the newly-created bike shop
     tables:

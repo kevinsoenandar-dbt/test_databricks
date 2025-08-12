@@ -30,7 +30,17 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
-  dbt_databricks:
-    # Config indicated by + and applies to all files under models/example/
+  test_databricks:
+    staging:
+      +database: "{{ 'ksoenandar_bronze' if target.name == 'prod' else 'ksoenandar_dev' }}"
+      bike_shop:
+        +schema: bike_shop
+        +grants:
+          select: ['ksoenandar_data_engineer']
     mart:
       +materialized: table
+      +database: "{{ 'ksoenandar_gold' if target.name == 'prod' else 'ksoenandar_dev' }}"
+      core:
+        +schema: core
+        +grants:
+          select: ['ksoenandar_everyone']
