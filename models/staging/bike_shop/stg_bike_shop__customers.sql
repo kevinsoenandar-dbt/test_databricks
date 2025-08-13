@@ -12,7 +12,7 @@ renamed as (
         ---------- text
         first_name as customer_first_name,
         last_name as customer_last_name,
-        email as customer_email,
+        email as customer_email_address,
         decode(gender,
             'F', 'Female',
             'M', 'Male',
