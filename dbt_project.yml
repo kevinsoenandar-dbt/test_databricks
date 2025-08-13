@@ -36,11 +36,11 @@ models:
       bike_shop:
         +schema: bike_shop
         +grants:
-          select: ['ksoenandar_data_engineer']
+          select: ['transformers']
     mart:
       +materialized: table
       +database: "{{ 'ksoenandar_gold' if target.name == 'prod' else 'ksoenandar_dev' }}"
       core:
         +schema: core
         +grants:
-          select: ['ksoenandar_everyone']
+          select: ['users']
