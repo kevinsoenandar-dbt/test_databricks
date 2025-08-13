@@ -1,0 +1,11 @@
+models:
+  - name: product_profitability
+    columns:
+      - name: order_date
+        description: "The date of the order"
+      - name: total_revenue
+        description: "The total revenue from the order; calculated by multiplying the product_price by the order_product_quantity from the `fct_order_products` model"
+      - name: total_cost
+        description: "The total cost from the order; calculated by multiplying the product_cost by the order_product_quantity from the `fct_order_products` model"
+      - name: total_profit
+        description: "The total profit from the order; computed by subtracting total cost from total_revenue"
