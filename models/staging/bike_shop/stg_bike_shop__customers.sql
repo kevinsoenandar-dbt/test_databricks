@@ -11,8 +11,8 @@ renamed as (
 
         ---------- text
         first_name as customer_first_name,
-        {{ mask_column('last_name') }} as customer_last_name,
-        {{ mask_column('email') }} as customer_email,
+        last_name as customer_last_name,
+        email as customer_email_address,
         decode(gender,
             'F', 'Female',
             'M', 'Male',
