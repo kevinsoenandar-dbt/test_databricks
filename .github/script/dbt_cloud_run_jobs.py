@@ -65,7 +65,7 @@ def run():
     visit_url = f"https://cloud.getdbt.com/#/accounts/{ACCOUNT_ID}/projects/{PROJECT_ID}/runs/{build_job_run_id}/"
 
     timeout = 30
-    end_time = pendulum.now() + pendulum.timedelta(minutes=timeout)
+    end_time = pendulum.now().add(minutes=timeout)
 
     while pendulum.now() < end_time:
         time.sleep(5)
