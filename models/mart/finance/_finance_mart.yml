@@ -1,5 +1,5 @@
 models:
-  - name: product_profitability
+  - name: daily_profit_loss
     columns:
       - name: order_date
         description: "The date of the order"
