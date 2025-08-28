@@ -3,6 +3,10 @@ models:
     description: Customer data with basic cleaning and transformation applied, one row per customer.
     columns:
       - name: customer_gender
+        description: gender of the customer
+        config:
+          meta:
+            is_sensitive: false
         data_tests:
           - accepted_values:
               values:
