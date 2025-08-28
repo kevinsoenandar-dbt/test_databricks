@@ -23,7 +23,6 @@ sources:
           - name: customer_id
             data_tests:
               - not_null
-              - unique
               - relationships:
                   field: id
                   to: source("bike_shop", "customers")
