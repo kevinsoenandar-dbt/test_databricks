@@ -7,6 +7,7 @@ models:
         config:
           meta:
             is_sensitive: false
+          tags: ["sensitive"]
         data_tests:
           - accepted_values:
               values:
