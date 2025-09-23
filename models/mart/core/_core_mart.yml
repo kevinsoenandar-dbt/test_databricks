@@ -33,3 +33,9 @@ models:
       - name: customer_last_name
       - name: customer_gender
       - name: customer_city
+  - name: dim_date
+    time_spine:
+      standard_granularity_column: date_day
+    columns:
+      - name: date_day
+        granularity: day
