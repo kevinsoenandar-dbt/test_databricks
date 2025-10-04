@@ -2,12 +2,13 @@ models:
   - name: stg_bike_shop__customers
     description: Customer data with basic cleaning and transformation applied, one row per customer.
     columns:
-      - name: customer_gender
+      - name: CUSTOMER_GENDER
         description: gender of the customer
         config:
           meta:
             is_sensitive: false
-        tags: ["sensitive"]
+        tags:
+          - sensitive
         data_tests:
           - accepted_values:
               values:
