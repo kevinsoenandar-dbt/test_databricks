@@ -39,11 +39,16 @@ models:
       bike_shop:
         +schema: bike_shop
         +grants:
-          select: ['transformers']
+          select:
+            - tonayya-transformer
     mart:
       +materialized: table
       +database: "{{ 'ksoenandar_gold' if target.name == 'prod' else 'ksoenandar_dev' }}"
       core:
         +schema: core
-        +grants:
-          select: ['sa_demo_group']
+
+flags:
+  use_materialization_v2: true
+
+on-run-end: 
+  - "{{ grant_revoke_schema_usage() }}"
