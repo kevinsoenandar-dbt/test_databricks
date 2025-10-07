@@ -43,7 +43,8 @@ models:
             - tonayya-transformer
     mart:
       +materialized: table
-      +database: "{{ 'ksoenandar_gold' if target.name == 'prod' else 'ksoenandar_dev' }}"
+      +database: "{{ 'ksoenandar_gold' if target.name == 'prod' else 'ksoenandar_dev_iceberg' }}"
+      +table_format: iceberg
       core:
         +schema: core
 
