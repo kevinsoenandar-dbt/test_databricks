@@ -47,6 +47,7 @@ models:
       +table_format: iceberg
       core:
         +schema: core
+        +access: public
 
 flags:
   use_materialization_v2: true
