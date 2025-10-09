@@ -32,8 +32,6 @@ models:
       - name: customer_first_name
       - name: customer_last_name
       - name: customer_gender
-        databricks_tags:
-          classification: pii
       - name: customer_city
       - name: customer_city
   - name: dim_date
