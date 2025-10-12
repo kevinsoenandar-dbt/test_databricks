@@ -1,6 +1,11 @@
 models:
   - name: stg_bike_shop__customers
     description: Customer data with basic cleaning and transformation applied, one row per customer.
+    data_tests:
+      - shared_macro.unique:
+          column_names:
+            - customer_id
+            - customer_email_address
     columns:
       - name: CUSTOMER_GENDER
         description: gender of the customer

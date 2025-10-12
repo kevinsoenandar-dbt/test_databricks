@@ -47,6 +47,10 @@ models:
         +schema: core
         +access: public
 
+dispatch:
+  - macro_namespace: dbt
+    search_order: ['shared_macro', 'test_databricks', 'dbt']
+
 flags:
   use_materialization_v2: true
 
