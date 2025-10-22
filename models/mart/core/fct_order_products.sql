@@ -1,6 +1,9 @@
 {{ config(
     materialized = 'incremental',
-    unique_key = 'order_product_id'
+    incremental_strategy = 'microbatch', 
+    event_time = 'order_date',
+    begin = '2025-01-01',
+    batch_size = 'day'
 )
 }}
 
@@ -9,8 +12,6 @@ with order_products as (
     
     from {{ ref("stg_bike_shop__order_products") }}
 
-    {% if is_incremental() %}
-    where order_product_id not in (select order_product_id from {{ this }})
     {% endif %}
 )
 

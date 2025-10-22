@@ -19,5 +19,7 @@ models:
     description: Individual products that make up an order, one row per product.
   - name: stg_bike_shop__orders
     description: Order data with basic cleaning and transformation applied, one row per order.
+    config:
+      event_time: order_date
   - name: stg_bike_shop__products
     description: Product data with basic cleaning and transformation applied, one row per product.
