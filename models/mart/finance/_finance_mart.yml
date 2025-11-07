@@ -1,0 +1,17 @@
+models:
+  - name: customer_leaderboard
+    description: This model aggregates customer purchase data to provide a leaderboard of customers based on their total purchase quantity, revenue, cost, and profit. It helps in identifying top customers and understanding their purchasing behavior.
+    columns:
+      - name: customer_id
+        description: A unique identifier for each customer.
+        data_tests:
+          - unique
+      - name: total_quantity
+        description: The total quantity of products purchased by the customer.
+      - name: total_revenue
+        description: The total revenue generated from the customer's purchases.
+      - name: total_cost
+        description: The total cost incurred for the products purchased by the customer.
+      - name: total_profit
+        description: The total profit earned from the customer's purchases, calculated as total revenue minus total cost.
+    
