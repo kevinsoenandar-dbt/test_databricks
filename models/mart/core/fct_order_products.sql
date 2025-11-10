@@ -1,9 +1,5 @@
 {{ config(
     materialized = 'incremental',
-    incremental_strategy = 'microbatch', 
-    event_time = 'order_date',
-    begin = '2025-01-01',
-    batch_size = 'day'
 )
 }}
 
@@ -11,8 +7,6 @@ with order_products as (
     select * 
     
     from {{ ref("stg_bike_shop__order_products") }}
-
-    {% endif %}
 )
 
 , products as (
