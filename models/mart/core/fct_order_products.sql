@@ -10,6 +10,10 @@ with order_products as (
     select * 
     
     from {{ ref("stg_bike_shop__order_products") }}
+
+    {% if is_incremental() %}
+    where order_product_id not in (select order_product_id from {{ this }})
+    {% endif %}
 )
 
 , products as (
