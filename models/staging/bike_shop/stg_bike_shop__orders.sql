@@ -4,7 +4,7 @@
 
 with source as (
     select * from {{ source("bike_shop", "orders") }}
-)
+),
 
 renamed as (
 
