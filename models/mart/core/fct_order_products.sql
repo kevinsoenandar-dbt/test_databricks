@@ -1,9 +1,8 @@
 {{ config(
     materialized = 'incremental',
-    incremental_strategy = 'microbatch', 
-    event_time = 'order_date',
-    begin = '2025-01-01',
-    batch_size = 'day'
+    unique_key = 'order_product_id', 
+    on_schema_change = 'append_new_columns',
+    post_hook = '{{ unload_to_s3("fct_order_products", "dbt-ksoenandar", "mart_models") }}'
 )
 }}
 
@@ -11,8 +10,6 @@ with order_products as (
     select * 
     
     from {{ ref("stg_bike_shop__order_products") }}
-
-    {% endif %}
 )
 
 , products as (
