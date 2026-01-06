@@ -1,7 +1,7 @@
 {% macro create_table_copy(should_run=var("should_run", False)) %}
 
     {% if execute %}
-        {% if should_run | as_bool and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "dev" %}
+        {% if should_run | as_bool and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
             {% do log(selected_resources, info=True) %}
 
             {% for node in selected_resources %}
