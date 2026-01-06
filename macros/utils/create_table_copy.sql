@@ -1,7 +1,7 @@
 {% macro create_table_copy(should_run=var("should_run", False)) %}
 
-    {% if should_run %}
-        {% do log(env_var("DBT_CLOUD_INVOCATION_CONTEXT"), info = True) %}
+    {% if should_run | as_bool and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
+        {% do log(selected_resources, info=True) %}
 
         {% for node in selected_resources %}
             {% set node_object = graph.nodes.values() | selectattr("resource_type", "equalto", "model") | selectattr("unique_id", "equalto", node) | first %}
