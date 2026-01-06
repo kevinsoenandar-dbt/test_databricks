@@ -12,7 +12,7 @@
         {# Step 2 - Execute the create table statement for each model #}
         {% for model in changed_models %}
             {% set node_object = graph.nodes.values() | selectattr("unique_id", "equalto", model) | first %}
-            {% do log(tables_to_copy, info=True) %}
+            {% do log(model, info=True) %}
             {% do _execute_create_table_query(node_object.database, node_object.schema, node_object.name) %}
         {% endfor %}
     {% endif %}
