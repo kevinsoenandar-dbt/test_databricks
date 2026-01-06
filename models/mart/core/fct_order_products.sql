@@ -33,7 +33,7 @@ with order_products as (
         orders.order_date,
         order_products.order_product_quantity,
         products.product_price,
-        products.product_cost
+        products.product_cost * 0.95
 
     from order_products
 

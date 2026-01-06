@@ -14,7 +14,7 @@ models:
               values:
                 - Male
                 - Female
-                - Non-binary
+                - Non-conforming
   - name: stg_bike_shop__order_products
     description: Individual products that make up an order, one row per product.
   - name: stg_bike_shop__orders
