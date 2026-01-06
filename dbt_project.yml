@@ -51,7 +51,7 @@ flags:
   use_materialization_v2: true
 
 on-run-start:
-  - "{{ create_table_copy() }}"
+  - "{{ create_table_copy(var('should_run', False)) }}"
 
 on-run-end: 
   - "{{ grant_revoke_schema_usage() }}"
