@@ -3,9 +3,10 @@
     {% if should_run and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
 
         {% for node in selected_resources %}
-            {% set node_object = graph.nodes.values() | selectattr("unique_id", "equalto", node) | selectattr("resource_type", "equalto", "model") | first %}
-            {% do log(model, info=True) %}
-            {% do _execute_create_table_query(node_object.database, node_object.schema, node_object.name) %}
+            {% set node_object = graph.nodes.values() | selectattr("resource_type", "equalto", "model") | selectattr("unique_id", "equalto", node) | first %}
+            {% if node_object | length > 0 %}
+                {% do _execute_create_table_query(node_object.database, node_object.schema, node_object.name) %}
+            {% endif %}
         {% endfor %}
     {% endif %}
 {% endmacro %}
