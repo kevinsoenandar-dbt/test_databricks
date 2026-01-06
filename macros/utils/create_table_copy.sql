@@ -1,6 +1,6 @@
-{% macro create_table_copy() %}
+{% macro create_table_copy(should_run=var("should_run", False)) %}
 
-    {% if execute %}
+    {% if should_run and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
         {# Step 1 - Get the list of models changed based on the node selection methods #}
         {% set changed_models = [] %}
         {% for node in selected_resources %}
