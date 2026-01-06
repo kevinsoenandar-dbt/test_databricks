@@ -2,7 +2,6 @@
 
     {% if execute %}
         {% if should_run | as_bool and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
-            {% do log(selected_resources, info=True) %}
 
             {% do _create_temp_pr_schema() %}
 
@@ -12,7 +11,13 @@
                     | selectattr("config.materialized", "equalto", "incremental")
                     | selectattr("unique_id", "equalto", node) | first %}
                 {% if node_object | length > 0 %}
-                    {% do _execute_create_table_query(node_object.config.database, node_object.config.schema, node_object.name) %}
+                    {% set deferral_node = node_object.defer_relation.relation_name %}
+                    {% if deferral_node %}
+                        {% do log("Found deferral node of: " ~ deferral_node, info=True) %}
+                        {% do _execute_create_table_query(node_object.name, deferral_node) %}
+                    {% else %}
+                        {% do log("No deferral node found for: " ~ node_object.name ~ ", skipping table copy creation...", info=True) %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
         {% endif %}
@@ -28,10 +33,10 @@
     {% do run_query(create_temp_pr_schema_query) %}
 {% endmacro%}
 
-{% macro _execute_create_table_query(database, schema, table_name) %}
+{% macro _execute_create_table_query(table_name, defer_relation) %}
 
     {% set create_table_query %}
-    create table {{ target.schema }}.{{ table_name }} like {{ database }}.{{ schema }}.{{ table_name }}
+    create table {{ target.schema }}.{{ table_name }} like {{ defer_relation }}
     {% endset %}
 
     {% do run_query(create_table_query) %}
