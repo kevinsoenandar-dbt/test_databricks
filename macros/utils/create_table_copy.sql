@@ -2,8 +2,8 @@
 
     {% if should_run and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
 
-        {% for model in changed_models %}
-            {% set node_object = graph.nodes.values() | selectattr("unique_id", "equalto", model) | selectattr("resource_type", "equalto", "model") | first %}
+        {% for node in selected_resources %}
+            {% set node_object = graph.nodes.values() | selectattr("unique_id", "equalto", node) | selectattr("resource_type", "equalto", "model") | first %}
             {% do log(model, info=True) %}
             {% do _execute_create_table_query(node_object.database, node_object.schema, node_object.name) %}
         {% endfor %}
