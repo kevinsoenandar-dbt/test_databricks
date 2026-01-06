@@ -16,7 +16,7 @@ renamed as (
         decode(gender,
             'F', 'Female',
             'M', 'Male',
-            'X', 'Non-binary') as customer_gender,
+            'X', 'Non-conforming') as customer_gender,
         city as customer_city,
         
         ---------- timestamp
