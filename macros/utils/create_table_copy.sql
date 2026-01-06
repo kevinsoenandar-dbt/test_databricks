@@ -4,6 +4,8 @@
         {% if should_run | as_bool and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
             {% do log(selected_resources, info=True) %}
 
+            {% do _create_temp_pr_schema() %}
+
             {% for node in selected_resources %}
                 {% set node_object = graph.nodes.values() 
                     | selectattr("resource_type", "equalto", "model") 
@@ -17,6 +19,14 @@
 
     {% endif %}
 {% endmacro %}
+
+{% macro _create_temp_pr_schema() %}
+    {% set create_temp_pr_schema_query %}
+    create schema if not exists {{ target.schema }}
+    {% endset %}
+
+    {% do run_query(create_temp_pr_schema_query) %}
+{% endmacro%}
 
 {% macro _execute_create_table_query(database, schema, table_name) %}
 
