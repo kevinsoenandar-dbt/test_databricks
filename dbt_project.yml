@@ -10,6 +10,7 @@ profile: 'kev_databricks'
 
 dbt-cloud:
   project-id: 445329
+  defer-env-id: 381220
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -48,6 +49,9 @@ models:
 
 flags:
   use_materialization_v2: true
+
+on-run-start: 
+  - "{{ create_table_copy(var('should_run', False)) }}"
 
 on-run-end: 
   - "{{ grant_revoke_schema_usage() }}"
