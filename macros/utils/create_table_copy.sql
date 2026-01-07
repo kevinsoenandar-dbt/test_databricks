@@ -26,7 +26,7 @@
 {% macro create_table_copy(should_run=var("should_run", False)) %}
 
     {% if execute %}
-        {% if should_run | as_bool and env_var("DBT_CLOUD_INVOCATION_CONTEXT") == "ci" %}
+        {% if should_run %}
 
             {% do _create_temp_pr_schema() %}
 
