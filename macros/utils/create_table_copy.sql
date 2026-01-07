@@ -25,6 +25,8 @@
 
 {% macro create_table_copy(should_run=var("should_run", False)) %}
 
+    {% do log("Hook is run at: " ~ run_started_at, info=True) %}
+
     {% if execute %}
         {% if should_run %}
 
