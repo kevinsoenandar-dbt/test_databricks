@@ -13,10 +13,7 @@ renamed as (
         first_name as customer_first_name,
         last_name as customer_last_name,
         email as customer_email_address,
-        decode(gender,
-            'F', 'Female',
-            'M', 'Male',
-            'X', 'Non-binary') as customer_gender,
+        {{ decode_generic('gender') }} as customer_gender,
         city as customer_city,
         
         ---------- timestamp

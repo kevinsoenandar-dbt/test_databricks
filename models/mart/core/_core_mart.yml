@@ -40,3 +40,13 @@ models:
     columns:
       - name: date_day
         granularity: day
+
+exposures:
+  - name: order_fulfillment_dashboard
+    label: Order Fulfillment Dashboard (Operations)
+    type: dashboard
+    depends_on:
+      - ref('fct_order_products')
+      - ref('dim_order')
+    owner:
+      name: Operations Team
